@@ -1,7 +1,7 @@
 First let's go to the page:
 ![Page view][p3]
 If the address is correct, then we should see something like this:
-![Page view][p1]
+![Page view](https://raw.githubusercontent.com/malakx/TryHackMe/master/temp/images/Page1.png)
 After clicking Advanced... -> Accept the Risk and Continue we finally land on what seems a real login page:
 ![Login page][p2]
 Ok, now it's time to search for the host name, so we proceed by clicking the i button in address bar:
