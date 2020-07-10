@@ -21,7 +21,7 @@ or here:
 
 
 
-[p1](/temp/images/Page1.png)
+[p1](https://raw.githubusercontent.com/malakx/TryHackMe/master/temp/images/Page1.png)
 [p2](/temp/images/Page2.png)
 [p3](/temp/images/Address.png)
 [p4](/temp/images/Menu.png)
