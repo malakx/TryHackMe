@@ -21,11 +21,11 @@ or here:
 
 
 
-[p1](/images/Page1.png)
-[p2](/images/Page2.png)
-[p3](/images/Address.png)
-[p4](/images/Menu.png)
-[p5](/images/Menu_next.png)
-[p6](/images/Cert.png)
-[p7](/images/Source1.png)
-[p8](/images/Source2.png)
+[p1](/temp/images/Page1.png)
+[p2](/temp/images/Page2.png)
+[p3](/temp/images/Address.png)
+[p4](/temp/images/Menu.png)
+[p5](/temp/images/Menu_next.png)
+[p6](/temp/images/Cert.png)
+[p7](/temp/images/Source1.png)
+[p8](/temp/images/Source2.png)
