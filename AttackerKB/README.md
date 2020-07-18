@@ -58,30 +58,39 @@ Don't forget to add port number to the address of the page!
 Firefox tutorial:
 
 First let's go to the page:
+
 ![Page view](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Address.png)
 
 If the address is correct, then we should see something like this:
+
 ![Page view](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Page1.png)
 
 After clicking Advanced... -> Accept the Risk and Continue we finally land on what seems a real login page:
+
 ![Login page](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Page2.png)
 
 Ok, now it's time to search for the host name, so we proceed by clicking the i button in address bar:
+
 ![Address bar](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Address.png)
 
 Moving on, we click the right arrow on the connection tab:
+
 ![Menu](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Menu.png)
 
 Next we click the `More information` button on the bottom:
+
 ![Menu](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Menu_next.png)
 
 This is the security tab, which will lead us to the certificate:
+
 ![Security](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Cert.png)
 
 What we see now is the information about page's security certificate, its issuer and who is it issued to. What is standing out is the name `source`, so I assume it's our hostname. We can see it here:
+
 ![Source](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Source1.png)
 
-or here:
+and here:
+
 ![Source](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Source2.png)
 
 
