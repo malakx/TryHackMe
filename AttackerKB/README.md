@@ -5,7 +5,7 @@ TryHackMe [link](https://tryhackme.com/room/attackerkb)
 export IP=10.10.235.213
 ```
 ### Task 1 is just an intro, let's head on to Task 2.
-I shoul warn You here that this writeup contains answers to questions (except Source room). If You're looking for nudges go find another writeup. Consider Yourself warned!
+I should warn You here that this writeup contains answers to questions (except Source room). If You're looking for nudges go find another writeup. Consider Yourself warned!
 ### Task 2:
 
 First we need to deploy the machine by clicking the 'Deploy' button.
@@ -58,23 +58,31 @@ Don't forget to add port number to the address of the page!
 Firefox tutorial:
 
 First let's go to the page:
-![Page view][p3]
+![Page view](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Address.png)
+
 If the address is correct, then we should see something like this:
-![Page view][p1]
+![Page view](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Page1.png)
+
 After clicking Advanced... -> Accept the Risk and Continue we finally land on what seems a real login page:
-![Login page][p2]
+![Login page](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Page2.png)
+
 Ok, now it's time to search for the host name, so we proceed by clicking the i button in address bar:
-![Address bar][p3]
+![Address bar](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Address.png)
+
 Moving on, we click the right arrow on the connection tab:
-![Menu][p4]
+![Menu](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Menu.png)
+
 Next we click the `More information` button on the bottom:
-![Menu][p5]
+![Menu](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Menu_next.png)
+
 This is the security tab, which will lead us to the certificate:
-![Security][p6]
+![Security](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Cert.png)
+
 What we see now is the information about page's security certificate, its issuer and who is it issued to. What is standing out is the name `source`, so I assume it's our hostname. We can see it here:
-![Source][p7]
+![Source](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Source1.png)
+
 or here:
-![Source][p8]
+![Source](https://github.com/malakx/TryHackMe/blob/master/AttackerKB/images/Source2.png)
 
 
 ### Task 3:
@@ -107,6 +115,7 @@ To launch metasploit simply type `msfconsole` in Your terminal window. To search
 To see what we can modify type `options`. 
 ##### Now that we've selected our exploit, set the options provided appropriately. Beyond RHOSTS and LHOST, what is the third option we must set to 'True'?
 Remember we had to navigate to https:// in order to run the webmin page? Well, that's SSL connection, so we need to set this to true in order to navigate the metasploit module correctly. Without this setting it would navigate to http:// and the exploit would fail: `set SSL true`
+###### Answer:
 ```
 SSL
 ```
@@ -123,12 +132,3 @@ THM{*REDACTED*}
 Congratulations! You have just completed two machines at once! AttackerKB and [Source](https://tryhackme.com/room/source)!
 
 Thanks for reading this writeup, hope You've learned something new!
-
-[p1](/images/Page1.png)
-[p2](/images/Page2.png)
-[p3](/images/Address.png)
-[p4](/images/Menu.png)
-[p5](/images/Menu_next.png)
-[p6](/images/Cert.png)
-[p7](/images/Source1.png)
-[p8](/images/Source2.png)
